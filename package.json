@@ -1,5 +1,6 @@
 {
   "name": "reactive-patterns-a7",
+  "author": "André Gustavo Castro | andregustavo.castro@gmail.com",
   "version": "0.0.0",
   "scripts": {
     "ng": "ng",
