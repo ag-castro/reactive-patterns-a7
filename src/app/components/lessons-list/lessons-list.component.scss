@@ -3,3 +3,18 @@ table {
   margin: 0 auto 30px auto;
   padding: 0 10px;
 }
+.btn-del {
+  display: flex;
+  flex-flow: column;
+  align-content: center;
+  align-items: center;
+  align-self: center;
+  justify-content: center;
+  padding: 5px 3px 0 3px;
+  margin-right: 1px;
+  .delete-btn {
+    //padding-top: 6px;
+    margin: 0;
+
+  }
+}

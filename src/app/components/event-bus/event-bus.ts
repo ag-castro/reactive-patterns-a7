@@ -16,7 +16,7 @@ interface EventBusSubject {
 
 class EnventBus implements EventBusSubject  {
 
-  private eventBusObservers: {[key: string]: EventBusObserver[]};
+  private eventBusObservers: {[key: string]: EventBusObserver[]} = {};
 
   registerEventBusObserver(eventType: string, obs: EventBusObserver) {
     this.observerPerEventType(eventType).push(obs);
