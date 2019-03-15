@@ -2,17 +2,21 @@
   <tbody>
   <tr *ngFor="let lesson of lessons">
     <td class="viewed">
-      <input type="checkbox" (click)="toggleLessonViewed(lesson)">
+      <input [checked]="lesson.completed" type="checkbox" (click)="toggleLessonViewed(lesson)">
     </td>
     <td class="lesson-title" [ngClass]="{'lesson-viewed':lesson.completed}">
       {{ lesson.description }}
     </td>
     <td class="duration">
-      <i class="md-icon duration-icon">access_time</i>
-      <span>{{lesson.duration}}</span>
-      <button class="button button-highlight btn-del" (click)="delete(lesson)">
-        <i class="md-icon delete-btn">delete</i>
-      </button>
+      <!--<div>-->
+        <!--<i class="md-icon duration-icon">access_time</i>-->
+        <!--<span>{{lesson.duration}}</span>-->
+      <!--</div>-->
+      <div>
+        <button class="button button-highlight btn-del" (click)="delete(lesson)">
+          <i class="md-icon delete-btn">delete</i>
+        </button>
+      </div>
     </td>
   </tr>
   </tbody>

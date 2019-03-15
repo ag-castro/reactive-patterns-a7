@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import {ADD_NEW_LESSON, globalEventBus, LESSONS_LIST_AVAILABLE} from './event-bus';
 import {testLessons} from '../shared/models/lessons-dumb-data';
 import {Lesson} from '../shared/models/lesson.model';
+import {store} from './app-data';
 
 
 @Component({
@@ -13,24 +13,26 @@ export class EventBusComponent implements OnInit {
 
   constructor() { }
 
-  private lessons: Lesson[] = [];
-
   ngOnInit() {
     console.log('TOP LEVEL COMPONENT BROADCASTED ALL LESSONS!!!');
-    this.lessons = testLessons.slice(0);
+
+    store.initLessonsList(testLessons.slice(0));
+
     setTimeout(() => {
-      this.lessons.push({
+      const newLesson: Lesson = {
         id: Math.random(),
-        description: 'New lesson arrifing from the backend',
-        completed: false,
-        duration: '1000'
-      });
-      globalEventBus.notifyEventBusObserver(LESSONS_LIST_AVAILABLE, this.lessons);
+        description: 'New lesson arriving from the backend'
+      };
+      store.addLesson(newLesson);
     }, 10000);
   }
 
   addLesson(lessonText: string) {
-    globalEventBus.notifyEventBusObserver(ADD_NEW_LESSON, lessonText);
+    const newLesson: Lesson = {
+      id: Math.random(),
+      description: lessonText
+    };
+    store.addLesson(newLesson);
   }
 
 
