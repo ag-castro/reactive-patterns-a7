@@ -32,15 +32,19 @@ class SubjectImplementation implements SubjectEventBus {
 }
 
 
-class DataStore {
+class DataStore implements ObservableEventBus {
 
   private lessons: Lesson[] = [];
   private lessonsListSubject = new SubjectImplementation();
 
-  public lessonsList$: ObservableEventBus = {
-    subscribe: obs => this.lessonsListSubject.subscribe(obs),
-    unsubscribe: obs => this.lessonsListSubject.unsubscribe(obs),
-  };
+  subscribe(obs: ObserverEventBus) {
+    this.lessonsListSubject.subscribe(obs);
+    obs.next(this.lessons);
+  }
+
+  unsubscribe(obs: ObserverEventBus) {
+    this.lessonsListSubject.unsubscribe(obs);
+  }
 
   initLessonsList(newList: Lesson[]) {
     this.lessons = _.cloneDeep(newList);
@@ -68,6 +72,8 @@ class DataStore {
   broadcast() {
     this.lessonsListSubject.next(_.cloneDeep(this.lessons));
   }
+
+
 }
 
 export const store = new DataStore();

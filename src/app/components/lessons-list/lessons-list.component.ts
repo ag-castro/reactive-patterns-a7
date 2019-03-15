@@ -13,7 +13,7 @@ export class LessonsListComponent implements ObserverEventBus {
 
   constructor() {
     console.log('Lesson List Component is registred as observer...');
-    store.lessonsList$.subscribe(this);
+    store.subscribe(this);
   }
 
   next(data: Lesson[]) {
